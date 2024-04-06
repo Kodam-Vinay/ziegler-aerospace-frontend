@@ -1,0 +1,125 @@
+.product-table-container {
+  overflow-x: auto;
+  height: 100%;
+}
+
+.product-table {
+  margin-top: 40px;
+  width: 100%;
+  margin-bottom: 20px;
+  overflow-y: auto;
+}
+
+.product-table th,
+.product-table td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.product-table th {
+  background-color: #125;
+}
+
+.edit-input {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+/* Cancel button */
+.cancel-button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #125; /* Background color */
+  color: #fff; /* Text color */
+}
+
+/* Edit button */
+.edit-button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #965; /* Background color */
+  color: #fff; /* Text color */
+}
+
+/* Delete button */
+.delete-button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #700; /* Background color */
+  color: #fff; /* Text color */
+}
+
+.add-button {
+  height: 30px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #085;
+  color: #fff;
+  position: absolute;
+}
+.add-button:hover {
+  background-color: rgb(80, 220, 169);
+}
+
+.modal {
+  background-color: #fff;
+  height: 98vh;
+  width: 95vw;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  background-color: rgb(20, 20, 20);
+}
+
+.close-button {
+  align-self: flex-end;
+}
+
+.main-popup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-upload-container > label {
+  color: white;
+}
+
+.each-row-container {
+  margin-right: 30px;
+}
+
+.product-image {
+  height: 80px;
+}
+
+.no-products-found-text {
+  margin-top: 40px;
+}
+
+.tabel-head {
+  height: 80px;
+}
+
+.product-table-image-container {
+  display: flex;
+}
+
+.product-table-image {
+  height: 100px !important;
+  width: 80px !important;
+  align-self: center;
+}

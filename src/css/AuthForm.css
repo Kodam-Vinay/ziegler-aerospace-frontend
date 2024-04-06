@@ -1,0 +1,109 @@
+.button {
+  cursor: pointer;
+  border: 0;
+  outline: none;
+  background: transparent;
+}
+
+.height-width-for-form-elements {
+  height: 35px;
+  width: 90%;
+}
+
+.white-color-background {
+  background: white;
+}
+
+.auth-form-container {
+  width: 99%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  align-self: center;
+}
+
+.input-field-container {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  outline: none;
+}
+
+.input-field-container > input {
+  margin-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+  width: 95%;
+}
+
+.input-field {
+  margin-top: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 14px;
+  outline: none;
+  padding: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.button-field-container:hover {
+  background-color: gray;
+}
+
+.form-submit-button {
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.user-type-selection-option {
+  font-size: 18px;
+}
+
+.error-message {
+  color: red;
+  font-style: italic;
+}
+
+.loading-login-screen-container-opacity {
+  opacity: 20%;
+}
+
+.image-upload-container {
+  width: 92%;
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.image-upload-container > input {
+  width: 100px;
+  color: transparent;
+}
+
+.image-upload-container > label {
+  font-size: 14px;
+  margin-left: 2px;
+}
+
+@media screen and (min-width: 550px) {
+  .auth-form-container {
+    width: 70%;
+  }
+  .image-upload-container > label {
+    margin-left: 5px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .auth-form-container {
+    width: 50%;
+  }
+}

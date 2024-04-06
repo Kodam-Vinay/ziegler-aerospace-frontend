@@ -1,0 +1,30 @@
+.panel-container {
+  display: flex;
+  flex-direction: column;
+}
+.panel-container > .user-name {
+  padding-left: 10px;
+  font-size: 28px;
+}
+.panel-container > .button-container {
+  width: 80%;
+  align-self: center;
+}
+
+@media screen and (min-width: 568px) {
+  .panel-container > .button-container {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 550px) {
+  .panel-container > .button-container {
+    width: 30%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .panel-container > .button-container {
+    width: 24%;
+  }
+}

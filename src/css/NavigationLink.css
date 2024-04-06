@@ -1,0 +1,14 @@
+.each-navigation-link-container {
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 700px) {
+  .each-navigation-link-container {
+    margin-right: 10px;
+  }
+}
+
+.active-navigation-link {
+  color: rgb(97, 94, 94);
+}

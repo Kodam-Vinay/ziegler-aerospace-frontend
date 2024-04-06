@@ -1,0 +1,80 @@
+.navbar-container {
+  height: 8%;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding: 5px;
+  background-color: #0f0d0d;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-right-side-container {
+  display: flex;
+  align-items: center;
+}
+
+.hamburger-button {
+  margin-top: 6px;
+  height: 30px;
+  width: 30px;
+  z-index: 10;
+}
+.navbar-right-link-container {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-links-container {
+  position: absolute;
+  right: 0;
+  margin-right: 10px;
+  margin-top: 150px;
+  background-color: rgb(54, 53, 53);
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.logout-button {
+  padding: 2px;
+  margin-top: 0px;
+}
+
+.logout-button:hover {
+  background-color: red;
+  border-radius: 10px;
+}
+
+.panel-user-image {
+  width: 40px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+@media screen and (min-width: 700px) {
+  .hamburger-button {
+    display: none;
+  }
+  .logout-button {
+    margin-top: 0px;
+  }
+  .navbar-links-container {
+    position: relative;
+    right: 0;
+    margin-right: 0;
+    margin-top: 0;
+    background-color: transparent;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+  }
+}
+
+.add-z-index-to-navbar {
+  z-index: 1;
+}

@@ -1,0 +1,24 @@
+.error-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90%;
+  color: white;
+}
+
+.error-page-container > h1 {
+  text-align: center;
+}
+.error-page-button {
+  border: 1px solid gray;
+  width: 50%;
+  border-radius: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: white;
+}
+
+.error-page-button:hover {
+  background-color: gray;
+}

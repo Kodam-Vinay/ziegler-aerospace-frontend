@@ -1,7 +1,6 @@
 import NavigationLink from "../components/NavigationLink";
 
-export const API_URL =
-  "https://ziegler-aerospace-assignment-production.up.railway.app/api/";
+export const API_URL = "https://assignments.vinay.kodam.in/ziegler/api/";
 
 export const CLOUDINARY_IMAGE_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`;
 export const CLOUDINARY_IMAGE_ACCESS_URL =

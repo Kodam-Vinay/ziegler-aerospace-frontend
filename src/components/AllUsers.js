@@ -28,18 +28,14 @@ const AllUsers = () => {
     );
     if (!checkConfirm) return;
     try {
-      const userDetails = {
-        user_id: id,
-        admin_id: user?.user_id,
-      };
+      const user_id = id;
       const options = {
         method: "DELETE",
         headers: {
           ...headers,
         },
-        body: JSON.stringify(userDetails),
       };
-      const apiUrl = API_URL + "users/delete-user";
+      const apiUrl = API_URL + `users/delete-user/${user_id}`;
       const response = await fetch(apiUrl, options);
       const data = await response.json();
       if (response.ok) {

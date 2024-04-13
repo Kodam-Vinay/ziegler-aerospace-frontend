@@ -35,7 +35,6 @@ const useGetData = ({
       };
       const response = await fetch(apiUrl, options);
       const data = await response.json();
-
       if (!response.ok) {
         setIsError(true);
         setError(data?.message);

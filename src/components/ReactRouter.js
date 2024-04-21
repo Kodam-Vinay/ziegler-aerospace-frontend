@@ -4,7 +4,6 @@ import Auth from "../Pages/Auth";
 import AuthRoute from "../ProtectedRoutes/AuthRoute";
 import Error from "../Pages/Error";
 import Home from "../Pages/Home";
-import Explore from "../Pages/Explore";
 import Cart from "../Pages/Cart";
 import AllUsers from "../components/AllUsers";
 import Payment from "../Pages/Payment";
@@ -31,14 +30,7 @@ const ReactRouter = ({ RenderLayout }) => {
             </AuthRoute>
           ),
         },
-        {
-          path: "/explore",
-          element: (
-            <AuthRoute>
-              <Explore />
-            </AuthRoute>
-          ),
-        },
+
         {
           path: "/users",
           element: (

@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
-import { CLOUDINARY_IMAGE_ACCESS_URL } from "../constants/constants";
+import {
+  CLOUDINARY_IMAGE_ACCESS_URL,
+  filterCartItemsList,
+} from "../constants/constants";
 import "../css/Cart.css";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStoreEmpty } from "../DataManager/slices/CartSlice";
@@ -11,15 +14,17 @@ const Cart = () => {
   const cartItemsList = useSelector(
     (store) => store?.persistedReducer?.cart?.cartItems
   );
+  const user = useSelector((store) => store?.persistedReducer?.user?.userInfo);
+  const cartList = filterCartItemsList(cartItemsList, user);
 
   const onClickRemoveAll = () => {
-    dispatch(makeStoreEmpty());
+    dispatch(makeStoreEmpty(user?.user_id));
   };
 
-  TotalPriceCalucation();
   const totalPrice = useSelector(
     (store) => store?.persistedReducer?.cart?.totalPrice
   );
+  TotalPriceCalucation();
 
   const renderEmptyPage = () => (
     <div className="empty-cart-container">
@@ -45,7 +50,7 @@ const Cart = () => {
         <span className="flex items-center ml-2"> ${totalPrice}</span>
       </h3>
       <ul className="w-full h-full space-y-2 flex flex-col mt-0 pb-4 pt-2 px-1 overflow-y-auto">
-        {cartItemsList.map((eachItem, index) => (
+        {cartList?.map((eachItem, index) => (
           <CartItem
             key={eachItem?.product_id + index * 53}
             cartItemDetails={eachItem}
@@ -58,7 +63,7 @@ const Cart = () => {
   return (
     <div className="cart-main-container">
       <div className="h-full w-full flex flex-col">
-        {cartItemsList.length > 0 && (
+        {Object.keys(cartList).length > 0 && (
           <button
             className="add-animation cart-button cart-clear-button"
             onClick={onClickRemoveAll}
@@ -67,9 +72,9 @@ const Cart = () => {
           </button>
         )}
         <div className="cart-show-list-container">
-          {cartItemsList.length > 0 ? renderResults() : renderEmptyPage()}
+          {Object.keys(cartList).length ? renderResults() : renderEmptyPage()}
         </div>
-        {cartItemsList.length > 0 ? (
+        {Object.keys(cartList).length ? (
           <div className="cart-check-add-more-buttons-container">
             <Link to="/payment" className="cart-below-button">
               <button className="cart-button add-animation">Checkout</button>

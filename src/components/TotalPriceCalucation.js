@@ -8,8 +8,10 @@ const TotalPriceCalucation = () => {
   const cartItemsList = useSelector(
     (store) => store?.persistedReducer?.cart?.cartItems
   );
+  const user = useSelector((store) => store?.persistedReducer?.user?.userInfo);
+  const cart = cartItemsList[user?.user_id];
   let TotalPrice = 0;
-  cartItemsList?.map((each) => {
+  cart?.map((each) => {
     if (each?.product_price) {
       TotalPrice += each?.product_price * each?.ItemsInCart;
     } else {

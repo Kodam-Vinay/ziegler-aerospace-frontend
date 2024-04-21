@@ -73,9 +73,10 @@ const Navbar = () => {
         <div className="navbar-right-link-container">
           <img
             src={
-              Object.values(user).length > 0
+              Object.values(user).length > 0 &&
+              CLOUDINARY_IMAGE_ACCESS_URL + user?.image?.length > 0
                 ? CLOUDINARY_IMAGE_ACCESS_URL + user?.image
-                : ""
+                : CLOUDINARY_IMAGE_ACCESS_URL + "DUMMY_PROFILE_LOGO"
             }
             alt="user-logo"
             className="panel-user-image"

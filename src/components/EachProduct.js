@@ -136,7 +136,16 @@ const EachProduct = ({ details, deleteProduct, setIsError, setError }) => {
   const onClickDelete = (product_id) => {
     deleteProduct(product_id);
   };
-
+  const imageUrl =
+    Object.values(details).length > 0 && details?.product_image?.length > 0
+      ? CLOUDINARY_IMAGE_ACCESS_URL.replace(
+          "e-commerce/",
+          "e-commerce-products/"
+        ) + details?.product_image
+      : CLOUDINARY_IMAGE_ACCESS_URL.replace(
+          "e-commerce/",
+          "e-commerce-products/"
+        ) + "NO-PRODUCT-IMAGE";
   return (
     <tr className="each-row-container">
       <td className="each-row-container table-data">
@@ -156,12 +165,7 @@ const EachProduct = ({ details, deleteProduct, setIsError, setError }) => {
       <td className="each-row-container table-data">
         <img
           className="product-image product-table-image"
-          src={
-            CLOUDINARY_IMAGE_ACCESS_URL.replace(
-              "e-commerce/",
-              "e-commerce-products/"
-            ) + details?.product_image
-          }
+          src={imageUrl}
           alt="product"
         />
       </td>

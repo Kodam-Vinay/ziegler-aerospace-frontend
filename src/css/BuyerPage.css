@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .product-card {
@@ -65,4 +66,11 @@
   background-color: white;
   height: 30px;
   border-radius: 10px;
+}
+
+@media screen and (min-width: 850px) {
+  .buyer-page-products-container {
+    justify-content: start;
+    margin-left: 30px;
+  }
 }

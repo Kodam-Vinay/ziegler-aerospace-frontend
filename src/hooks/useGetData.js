@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import useGetHeaders from "./useGetHeaders";
+import { Navigate } from "react-router-dom";
 
 const useGetData = ({
   setUsersData,
@@ -45,7 +46,7 @@ const useGetData = ({
         setApiCallComplete(true);
       }
     } catch (error) {
-      console.log(error);
+      <Navigate to="/error" />;
     }
   };
 };

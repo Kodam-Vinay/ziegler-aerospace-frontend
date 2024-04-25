@@ -3,14 +3,14 @@ import ProductTable from "../components/ProductTable";
 import useGetData from "../hooks/useGetData";
 import { useSelector, useDispatch } from "react-redux";
 import { API_URL } from "../constants/constants";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import "../css/SellerPage.css";
 import {
   setProductCreateResponse,
   setProductEdited,
 } from "../DataManager/slices/ProductSlice";
 import useGetHeaders from "../hooks/useGetHeaders";
+import { Navigate } from "react-router-dom";
 
 const SellerPage = () => {
   const headers = useGetHeaders();
@@ -87,7 +87,7 @@ const SellerPage = () => {
         });
       }
     } catch (error) {
-      console.log(error);
+      <Navigate to="/error" />;
     }
   };
 
@@ -142,9 +142,6 @@ const SellerPage = () => {
   }
   return (
     <div className="seller-page-container">
-      {checkProductCreateResponse || checkProductEdited ? (
-        <ToastContainer className="toast-container" />
-      ) : null}
       <ProductTable
         products={data}
         setError={setError}

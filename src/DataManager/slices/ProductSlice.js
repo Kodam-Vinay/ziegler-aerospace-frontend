@@ -4,7 +4,6 @@ const ProductSlice = createSlice({
   name: "products",
   initialState: {
     isProductCreatedResponseSuccess: false,
-
     isProductEdited: false,
   },
   reducers: {

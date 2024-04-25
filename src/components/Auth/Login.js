@@ -2,7 +2,7 @@ import { useState } from "react";
 import "../../css/Login.css";
 import AuthForm from "../AuthForm";
 import { API_URL } from "../../constants/constants";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { storeUserInfo } from "../../DataManager/slices/UserSlice";
 import { setLoginClicked } from "../../DataManager/slices/LoginSlice";
@@ -51,7 +51,7 @@ const Login = () => {
         setError(data?.message);
       }
     } catch (error) {
-      console.log(error);
+      <Navigate to="/error" />;
     }
   };
 

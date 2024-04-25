@@ -5,6 +5,8 @@ import store from "./DataManager/store";
 import ReactRouter from "./components/ReactRouter";
 import Navbar from "./components/Navbar";
 import { useSelector } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RenderLayout = () => {
   const location = useLocation();
@@ -21,6 +23,7 @@ function App() {
   const router = ReactRouter({ RenderLayout });
   return (
     <div className="app-router-container">
+      <ToastContainer className="toast-container" />
       <Provider store={store}>
         <RouterProvider router={router} />
       </Provider>

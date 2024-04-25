@@ -68,6 +68,10 @@
   border-radius: 10px;
 }
 
+.add-class-for-premium-and-all-text {
+  padding-left: 12px;
+}
+
 @media screen and (min-width: 850px) {
   .buyer-page-products-container {
     justify-content: start;

@@ -13,6 +13,7 @@ import { ColorRing } from "react-loader-spinner";
 import { useSelector, useDispatch } from "react-redux";
 import { setProductEdited } from "../DataManager/slices/ProductSlice";
 import useGetHeaders from "../hooks/useGetHeaders";
+import { Navigate } from "react-router-dom";
 
 const EachProduct = ({ details, deleteProduct, setIsError, setError }) => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const EachProduct = ({ details, deleteProduct, setIsError, setError }) => {
   const [imageName, setImageName] = useState("");
   const [specifications, setSpecifications] = useState("");
   const user = useSelector((store) => store?.persistedReducer?.user?.userInfo);
+  const [isPremium, setIsPremium] = useState(false);
 
   const onclickSubmitForm = async (product_id) => {
     try {
@@ -49,6 +51,7 @@ const EachProduct = ({ details, deleteProduct, setIsError, setError }) => {
         category,
         specifications: specsToArray,
         user_id: user?.user_id,
+        is_premium_product: isPremium,
       };
 
       const options = {
@@ -79,7 +82,7 @@ const EachProduct = ({ details, deleteProduct, setIsError, setError }) => {
         setError(data?.message);
       }
     } catch (error) {
-      console.log(error);
+      <Navigate to="/error" />;
     }
   };
 
@@ -111,7 +114,7 @@ const EachProduct = ({ details, deleteProduct, setIsError, setError }) => {
         });
         const res = await response.json();
         setImage(
-          res?.public_id ? res?.public_id?.slice(11) : "DUMMY_PROFILE_LOGO.png"
+          res?.public_id ? res?.public_id?.slice(11) : "NO-PRODUCT-IMAGE"
         );
         setLoading(false);
       } catch (error) {
@@ -129,6 +132,7 @@ const EachProduct = ({ details, deleteProduct, setIsError, setError }) => {
     setRating(product?.rating);
     setPrice(product?.product_price);
     setImageName(product?.product_image);
+    setIsPremium(product?.is_premium_product);
     const specs = product?.specifications.join(",");
     setSpecifications(specs);
   };
@@ -247,6 +251,28 @@ const EachProduct = ({ details, deleteProduct, setIsError, setError }) => {
                     }
                   }}
                 />
+
+                <div className="input-field white-color-background height-width-for-form-elements premium-radio-container">
+                  <label>Is Premium</label>
+                  <div>
+                    <input
+                      type="radio"
+                      name="premium"
+                      checked={isPremium === true}
+                      onChange={() => setIsPremium(true)}
+                    />
+                    <span>true</span>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      name="premium"
+                      checked={isPremium === false}
+                      onChange={() => setIsPremium(false)}
+                    />
+                    <span>false</span>
+                  </div>
+                </div>
 
                 <input
                   type="text"

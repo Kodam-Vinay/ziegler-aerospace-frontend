@@ -7,6 +7,10 @@ import Home from "../Pages/Home";
 import Cart from "../Pages/Cart";
 import AllUsers from "../components/AllUsers";
 import Payment from "../Pages/Payment";
+import Orders from "../Pages/Orders";
+import SellerRoute from "../ProtectedRoutes/SellerRoute";
+import AdminRoute from "../ProtectedRoutes/AdminRoute";
+import BuyerRoute from "../ProtectedRoutes/BuyerRoute";
 
 const ReactRouter = ({ RenderLayout }) => {
   const router = createBrowserRouter([
@@ -30,12 +34,23 @@ const ReactRouter = ({ RenderLayout }) => {
             </AuthRoute>
           ),
         },
-
         {
           path: "/users",
           element: (
             <AuthRoute>
-              <AllUsers />
+              <AdminRoute>
+                <AllUsers />
+              </AdminRoute>
+            </AuthRoute>
+          ),
+        },
+        {
+          path: "/orders",
+          element: (
+            <AuthRoute>
+              <SellerRoute>
+                <Orders />
+              </SellerRoute>
             </AuthRoute>
           ),
         },
@@ -43,7 +58,9 @@ const ReactRouter = ({ RenderLayout }) => {
           path: "/cart",
           element: (
             <AuthRoute>
-              <Cart />
+              <BuyerRoute>
+                <Cart />
+              </BuyerRoute>
             </AuthRoute>
           ),
         },
@@ -51,7 +68,9 @@ const ReactRouter = ({ RenderLayout }) => {
           path: "/payment",
           element: (
             <AuthRoute>
-              <Payment />
+              <BuyerRoute>
+                <Payment />
+              </BuyerRoute>
             </AuthRoute>
           ),
         },

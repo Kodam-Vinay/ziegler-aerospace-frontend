@@ -2,12 +2,12 @@ import { useSelector } from "react-redux";
 import "../css/AllUsers.css";
 import useGetData from "../hooks/useGetData";
 import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import EachUser from "./EachUser";
 import { CirclesWithBar } from "react-loader-spinner";
 import { API_URL } from "../constants/constants";
 import useGetHeaders from "../hooks/useGetHeaders";
+import { Navigate } from "react-router-dom";
 
 const AllUsers = () => {
   const [usersData, setUsersData] = useState([]);
@@ -68,7 +68,7 @@ const AllUsers = () => {
         });
       }
     } catch (error) {
-      console.log(error);
+      <Navigate to="/error" />;
     }
   };
 
@@ -88,7 +88,6 @@ const AllUsers = () => {
 
   return (
     <div className="all-users-container">
-      <ToastContainer className="toast-container" />
       <p>Users List</p>
       {usersData?.length > 0 && !isError ? (
         <table className="table-container">

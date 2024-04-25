@@ -3,10 +3,11 @@ import Popup from "reactjs-popup";
 import useDeviceResize from "../hooks/useDeviceResize";
 import { API_URL, CLOUDINARY_IMAGE_UPLOAD_URL } from "../constants/constants";
 import { ColorRing } from "react-loader-spinner";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import "../css/Table.css";
 import { setProductCreateResponse } from "../DataManager/slices/ProductSlice";
 import useGetHeaders from "../hooks/useGetHeaders";
+import { Navigate } from "react-router-dom";
 
 const PopupForAddProduct = ({ setError, setIsError }) => {
   const dispatch = useDispatch();
@@ -19,9 +20,8 @@ const PopupForAddProduct = ({ setError, setIsError }) => {
   const [image, setImage] = useState("");
   const [imageName, setImageName] = useState("");
   const [specifications, setSpecifications] = useState("");
-  const user = useSelector((store) => store?.persistedReducer?.user?.userInfo);
   const size = useDeviceResize();
-
+  const [isPremium, setIsPremium] = useState(false);
   const handleImageUpload = async (image) => {
     if (!image) return;
     setLoading(true);
@@ -51,7 +51,7 @@ const PopupForAddProduct = ({ setError, setIsError }) => {
         });
         const res = await response.json();
         setImage(
-          res?.public_id ? res?.public_id?.slice(11) : "DUMMY_PROFILE_LOGO.png"
+          res?.public_id ? res?.public_id?.slice(11) : "NO-PRODUCT-IMAGE"
         );
         setLoading(false);
       } catch (error) {
@@ -79,7 +79,7 @@ const PopupForAddProduct = ({ setError, setIsError }) => {
       rating,
       category,
       specifications: specsToArray,
-      user_id: user?.user_id,
+      is_premium_product: isPremium,
     };
 
     const options = {
@@ -109,7 +109,7 @@ const PopupForAddProduct = ({ setError, setIsError }) => {
         setIsError(true);
       }
     } catch (error) {
-      console.log(error);
+      <Navigate to="/error" />;
     }
   };
 
@@ -171,6 +171,27 @@ const PopupForAddProduct = ({ setError, setIsError }) => {
                 }
               }}
             />
+            <div className="input-field white-color-background height-width-for-form-elements premium-radio-container">
+              <label>Is Premium</label>
+              <div>
+                <input
+                  type="radio"
+                  name="premium"
+                  checked={isPremium === true}
+                  onChange={() => setIsPremium(true)}
+                />
+                <span>true</span>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="premium"
+                  checked={isPremium === false}
+                  onChange={() => setIsPremium(false)}
+                />
+                <span>false</span>
+              </div>
+            </div>
 
             <input
               type="text"

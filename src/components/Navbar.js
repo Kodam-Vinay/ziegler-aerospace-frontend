@@ -41,6 +41,10 @@ const sellerNavigationLinks = [
     id: "/",
     name: "Home",
   },
+  {
+    id: "/orders",
+    name: "Orders",
+  },
 ];
 
 const Navbar = () => {

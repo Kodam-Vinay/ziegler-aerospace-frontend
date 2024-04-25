@@ -5,16 +5,15 @@ import {
   API_URL,
   CLOUDINARY_IMAGE_UPLOAD_URL,
 } from "../../constants/constants";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { storeUserInfo } from "../../DataManager/slices/UserSlice";
 import { setLoginClicked } from "../../DataManager/slices/LoginSlice";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import {
   setImageId,
   setImageName,
 } from "../../DataManager/slices/CloudinarySlice";
-import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -128,12 +127,11 @@ const SignUp = () => {
         setError(data?.message);
       }
     } catch (error) {
-      console.log(error);
+      <Navigate to="/error" />;
     }
   };
   return (
     <div className="signup-auth-container">
-      <ToastContainer className="toast-container" />
       <AuthForm
         name={name}
         setName={setName}

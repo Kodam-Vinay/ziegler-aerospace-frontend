@@ -1,16 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import {
+  API_URL,
   CLOUDINARY_IMAGE_ACCESS_URL,
   filterCartItemsList,
 } from "../constants/constants";
 import "../css/Cart.css";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStoreEmpty } from "../DataManager/slices/CartSlice";
-import TotalPriceCalucation from "../components/TotalPriceCalucation";
+import useTotalPriceCalucation from "../hooks/useTotalPriceCalucation";
 import CartItem from "../components/CartItem";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import useGetHeaders from "../hooks/useGetHeaders";
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const [error, setError] = useState("");
+  const [isError, setIsError] = useState(false);
+  const headers = useGetHeaders();
   const cartItemsList = useSelector(
     (store) => store?.persistedReducer?.cart?.cartItems
   );
@@ -21,10 +28,39 @@ const Cart = () => {
     dispatch(makeStoreEmpty(user?.user_id));
   };
 
-  const totalPrice = useSelector(
-    (store) => store?.persistedReducer?.cart?.totalPrice
-  );
-  TotalPriceCalucation();
+  const cart = cartItemsList[user?.user_id];
+
+  const totalPrice = useTotalPriceCalucation({
+    list: cart,
+    count_item: "ItemsInCart",
+  });
+
+  const onClickCheckOut = async (cartList) => {
+    //let's make api req for seller to get idea of how many products he saled
+    if (cartList.length === 0) return;
+    try {
+      const options = {
+        method: "POST",
+        headers: {
+          ...headers,
+        },
+        body: JSON.stringify(cartList),
+      };
+
+      const apiUrl = API_URL + "orders/store-orders";
+      const response = await fetch(apiUrl, options);
+      const data = await response.json();
+      if (response?.ok) {
+        setIsError(false);
+        dispatch(makeStoreEmpty(user?.user_id));
+      } else {
+        setError(data?.message);
+        setIsError(true);
+      }
+    } catch (error) {
+      <Navigate to="/error" />;
+    }
+  };
 
   const renderEmptyPage = () => (
     <div className="empty-cart-container">
@@ -60,6 +96,20 @@ const Cart = () => {
     </div>
   );
 
+  if (isError) {
+    toast(error, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      type: "error",
+    });
+  }
+
   return (
     <div className="cart-main-container">
       <div className="h-full w-full flex flex-col">
@@ -77,7 +127,12 @@ const Cart = () => {
         {Object.keys(cartList).length ? (
           <div className="cart-check-add-more-buttons-container">
             <Link to="/payment" className="cart-below-button">
-              <button className="cart-button add-animation">Checkout</button>
+              <button
+                className="cart-button add-animation"
+                onClick={() => onClickCheckOut(cartList)}
+              >
+                Checkout
+              </button>
             </Link>
             <Link to="/" className="cart-below-button">
               <button className="cart-button add-animation">

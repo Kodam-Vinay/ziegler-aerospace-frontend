@@ -22,6 +22,7 @@ const PopupForAddProduct = ({ setError, setIsError }) => {
   const [specifications, setSpecifications] = useState("");
   const size = useDeviceResize();
   const [isPremium, setIsPremium] = useState(false);
+
   const handleImageUpload = async (image) => {
     if (!image) return;
     setLoading(true);
